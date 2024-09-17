@@ -1,0 +1,21 @@
+#loder{
+  width: 100px;
+  height: 100px;
+  border-radius:50%;
+    border:10px solid grey;
+  border-left: 10px solid #0f1111; 
+  animation-name:spinanimation;
+   animation-duration:3s;
+    animation-time-functin:ease-in;
+  animation-iteration-count:infinite; 
+}
+
+@keyframes spinanimation{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+

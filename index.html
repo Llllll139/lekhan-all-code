@@ -1,179 +1,205 @@
 <!DOCTYPE html>
-
-<html>
-<head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
-  <title>XYZ.co..</title>
-  <style>
-  body{
-
-    background-color:black;
-    background-repeat:no-repeat;
-background-size:cover;    
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
     
-  }
-  .navbar
-  {
-    border-radius: 30px;
-  height: 400;
-  width: 800;
-  background-color: #FFE5CF;
-    color:#8C3061;
-    
+    * {
+  margin: 0;
+  padding: 0;
 }
-  .navbar a{
-    background-size:cover;
-    
-    text-decoration: none;
-    font- style:Garamond;
-    font-size: 40px;
-    font-weight:1000;
-    display :flex;
-    justify-content:center; 
-    
-  }
-  .navbar img {
-    height:40px;
-    width: 40px;
-    border-radius: 40px;
-  }
-  
-  .navbar p{
-    display:flex;
-    justify-content:space-evenly;
-  }
-  .form
-  {
-    color:#8C3061;
-    text-decoration:none;
-    font- style:Garamond;
+body {
+  background-color: #0081A7;
+  text-align: center;
+}
+.container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game {
+  height: 60vmin;
+  width: 60vmin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vmin;
+}
+.box {
+  height: 18vmin;
+  width: 18vmin;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  font-size: 8vmin;
+  color: #D81159;
+  background-color: #f28482;
+}
+#reset-btn {
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #191913;
+  color: #fff;
+  border-radius: 1rem;
+  border: none;
+}
+    #reset-btn2{
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #191913;
+  color: #fff;
+  border-radius: 1rem;
+  border: none;
+}
+#new-btn {
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: #191913;
+  color: #fff;
+  border-radius: 1rem;
+  border: none;
+}
+#msg {
+  color: #ffffc7;
+  font-size: 5vmin;
+}
+.msg-container {
+  height: 100vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+}
+.hide {
+  display: none;
+}
+    </style>
+  </head>
+  <body>
+    <div class="msg-container hide">
+      <p id="msg">Winner</p>
+      <button id="new-btn">New Game</button>
+    </div>
+    <main>
+      <h1>Tic Tac Toe</h1>
+      <div class="container">
+        <div class="game">
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+        </div>
+      </div>
+      <button id="reset-btn">Reset Game</button>
+      <button id="reset-btn2">Quite game </button>
+    </main>
    
-      }
-  a{
-    text-decoration: none;
-    color:white;
-  }
-  .all{
-    text-decoration: none;
-    color:white;
-    font -family:fantasy;
-    font-weight:900;
-    display: flex;
-    justify-content: space-evenly;
-align-items:center;     
-  }
-  .content{
-  position: relative;
-  background-color: black;
-  width:300px;
-  margin: 50px;
-  color:white;
-  padding: 10px;
-  border-radius: 10px;
-   
-}
-  .content::after {
+ <script>
     
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  translate: -50% -50%;
-  left:50%;
-  top:50%;
-  z-index:-1;
-  padding: 3px;
-    filter: blur(15px);
-  background-image:conic-gradient( from var(--angle),transparent 64% ,#FF0000,#FF5733,#C70039,#900C3F,#511845,#6EC207 ,#7A1CAC,#FF4D00);
-    animation-name: rotate; 
-    animation-duration:1s; 
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in;
-    filter: blur(10px);
-    border-radius: 10px;
-  }
-  @property--angle{
-    stntax:"<angle>";
-      initial-value:0deg;
-      inherits:false;
-  }
-  .content::before
-  {
-    content: "";
-  filter: blur(10px);
-}
- 
-  @keyframes rotate{
-    0%{
-      --angle:0deg;
-      
-    }
-    20%{
-      --angle:50deg;
-    }
-    35%{
-      --angle: 150deg;
-    }
-    50%{
-     --angle:200deg ;
-    }
-    75%{
-      --angle:250deg;
-    }
-    85%{
-      --angle:300deg;
-    }
-    100%{
-      --angle:360deg;
-    }
-  }
+let boxes = document.querySelectorAll(".box");
+let resetBtn = document.querySelector("#reset-btn");
+let resetBtn2 = document.querySelector("#reset-btn2");
+    let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+let turnO = true; //playerX, playerO
+let count = 0; //To Track Draw
+const winPatterns = [
+  [0, 1, 2],
+  [0, 3, 6],
+  [0, 4, 8],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [3, 4, 5],
+  [6, 7, 8],
+];
+     
+ const resetGame = () => {
+  turnO = true;
+  count = 0;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+};
 
-  </style>
-</head>
-<body>
-  <div class="navbar"> 
-    <a class="main">
-      <img src="content://media/external/downloads/1000057535">XYZ CO</a>
+boxes.forEach((box)=>{
+    box.addEventListener("click",()=>{
+        if (turnO) {
+      //playerO
+      box.innerText = "O";
+      turnO = false;
+    } else {
+      //playerX
+      box.innerText = "X";
+      turnO = true;
+    }
+        box.disable=true;
+        count++;
+        let isWinner=checkWinner();
+        if(count===9 && !isWinner){
+        gameDraw();
+    }
+    });
+});
+const gameDraw=()=>{
+    msg.innerText=`Game was a Draw your oponet has good knowledge`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
     
-    <p> 
-      <i class="fa-duotone fa-solid fa-house" ></i>
-       <a class="form">Home</a>
-      <i class="fa-duotone fa-solid fa-paperclip"></i> 
-      <a class="form" href="/storage/emulated/0/xyx.form.list/index.html"> Form   </a>
-   <i class="fa-solid fa-phone"></i>
-      <a class="form">Contact.Us </a>
-      <i class="fa-duotone fa-solid fa-handshake-angle"></i>
-       <a class="form">Help</a>
-    </p>
-  </div>
-  <div class="all">
-  <div class="content">
-    <a href="/storage/emulated/0/choches list.html">
-Zonel level COACHES LIST
-      
-    </a>
+};
+const disableBoxes=()=>{
+    for (let box of boxes){
+        box.displed=true; 
+        
     
-  </div>
-  <div class="content">
-    <a href="/storage/emulated/0/chches list district  level.html">
-District level COACHES LIST
-      
-    </a>
-  </div>
-  <div class="content">
-    <a href="/storage/emulated/0/choches state level.html">
-      State level COACHES LIST
-      
-    </a>
-  </div>
-  <div class="content">
-    <a href="/storage/emulated/0/choches national level.html">
-National level COACHES LIST
-      
-    </a>
-  </div>
-  </div>
-</body>
+    }
+};
+const enableBoxes=()=>{
+    for(let box of boxes){
+        box.disable=false;
+        box.innerText="";
+    }
+    
+    
+};
+    const showWinner = (winner) => {
+  msg.innerText = `Congratulations, Winner is ${winner}`;
+  msgContainer.classList.remove("hide");
+  disableBoxes();
+};
+    
+const checkWinner=()=>{
+    for(let pattern of winPatterns){
+        let pos1Val=boxes[pattern[0]].innerText; 
+        let pos2Val=boxes[pattern[1]].innerText;
+        let pos3Val=boxes[pattern[2]].innerText;
+        
+        if(pos1Val!=""&&pos2Val!=""&&pos3Val!=""){
+            if(pos1Val===pos2Val&&pos2Val===pos3Val){
+                
+                showWinner(pos1Val);
+                return true;
+            }
+        }
+        
+    }
+}; 
+    newGameBtn.addEventListener("click", resetGame);//This is used for playing new game 
+resetBtn.addEventListener("click", resetGame);
+    resetBtn2.addEventListener("click", resetGame);
+    </script>   
+  </body>
 </html>
+<script>
+  

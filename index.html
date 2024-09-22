@@ -48,13 +48,14 @@ body {
   border-radius: 1rem;
   border: none;
 }
-    #reset-btn2{
+.quite{
   padding: 1rem;
   font-size: 1.25rem;
   background-color: #191913;
   color: #fff;
   border-radius: 1rem;
   border: none;
+  text-decoration: none
 }
 #new-btn {
   padding: 1rem;
@@ -102,15 +103,15 @@ body {
         </div>
       </div>
       <button id="reset-btn">Reset Game</button>
-      <button id="reset-btn2">Quite game </button>
-    </main>
+      <a class="quite"href="/storage/emulated/0/blank/index.html">Quite game </a>
+         </main>
    
  <script>
     
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
-let resetBtn2 = document.querySelector("#reset-btn2");
-    let newGameBtn = document.querySelector("#new-btn");
+let quite = document.querySelector(".quite");
+let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 let turnO = true; //playerX, playerO
@@ -197,7 +198,7 @@ const checkWinner=()=>{
 }; 
     newGameBtn.addEventListener("click", resetGame);//This is used for playing new game 
 resetBtn.addEventListener("click", resetGame);
-    resetBtn2.addEventListener("click", resetGame);
+    quite.addEventListener("click", );
     </script>   
   </body>
 </html>

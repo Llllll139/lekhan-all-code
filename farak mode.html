@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>mode</title>
+  <style>
+  
+  .dark{
+    background-color:black;
+    color:white;
+  }
+  .light{
+    background-color:white;
+    color:black;
+  }
+  
+  </style>
+</head>
+<body>
+  <button class="mode" > Change mode</button>
+  <script>
+  
+  let btn=document.querySelector(".mode");
+  let body=document.querySelector("body");
+  let currMode="light";
+  btn.addEventListener("click",()=>{
+    if (currMode==="light"){
+      currMode="dark";
+       body.classList.add("dark");
+      body.classList.remove("light");
+      
+    }else{
+      
+      currMode="light";
+          body.classList.add("light");
+      body.classList.remove("dark");
+    }
+    console.log(currMode);
+  });
+  </script>
+</body>
+</html>

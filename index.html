@@ -1,205 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic-Tac-Toe Game</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-    
-    * {
-  margin: 0;
-  padding: 0;
-}
-body {
-  background-color: #0081A7;
-  text-align: center;
-}
-.container {
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.game {
-  height: 60vmin;
-  width: 60vmin;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5vmin;
-}
-.box {
-  height: 18vmin;
-  width: 18vmin;
-  border-radius: 1rem;
-  border: none;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  font-size: 8vmin;
-  color: #D81159;
-  background-color: #f28482;
-}
-#reset-btn {
-  padding: 1rem;
-  font-size: 1.25rem;
-  background-color: #191913;
-  color: #fff;
-  border-radius: 1rem;
-  border: none;
-}
-    #reset-btn2{
-  padding: 1rem;
-  font-size: 1.25rem;
-  background-color: #191913;
-  color: #fff;
-  border-radius: 1rem;
-  border: none;
-}
-#new-btn {
-  padding: 1rem;
-  font-size: 1.25rem;
-  background-color: #191913;
-  color: #fff;
-  border-radius: 1rem;
-  border: none;
-}
-#msg {
-  color: #ffffc7;
-  font-size: 5vmin;
-}
-.msg-container {
-  height: 100vmin;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 4rem;
-}
-.hide {
-  display: none;
-}
-    </style>
-  </head>
-  <body>
-    <div class="msg-container hide">
-      <p id="msg">Winner</p>
-      <button id="new-btn">New Game</button>
-    </div>
-    <main>
-      <h1>Tic Tac Toe</h1>
-      <div class="container">
-        <div class="game">
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-          <button class="box"></button>
-        </div>
-      </div>
-      <button id="reset-btn">Reset Game</button>
-      <button id="reset-btn2">Quite game </button>
-    </main>
-   
- <script>
-    
-let boxes = document.querySelectorAll(".box");
-let resetBtn = document.querySelector("#reset-btn");
-let resetBtn2 = document.querySelector("#reset-btn2");
-    let newGameBtn = document.querySelector("#new-btn");
-let msgContainer = document.querySelector(".msg-container");
-let msg = document.querySelector("#msg");
-let turnO = true; //playerX, playerO
-let count = 0; //To Track Draw
-const winPatterns = [
-  [0, 1, 2],
-  [0, 3, 6],
-  [0, 4, 8],
-  [1, 4, 7],
-  [2, 5, 8],
-  [2, 4, 6],
-  [3, 4, 5],
-  [6, 7, 8],
-];
-     
- const resetGame = () => {
-  turnO = true;
-  count = 0;
-  enableBoxes();
-  msgContainer.classList.add("hide");
-};
 
-boxes.forEach((box)=>{
-    box.addEventListener("click",()=>{
-        if (turnO) {
-      //playerO
-      box.innerText = "O";
-      turnO = false;
-    } else {
-      //playerX
-      box.innerText = "X";
-      turnO = true;
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>Hello, World!</title>
+  <style>
+  * {
+ margin: 0;
+ padding: 0;
+ user-select: none;
+ box-sizing: border-box;
+  }
+
+body {
+  background-color: #8d0cf7;
+ 
+  min-height: 100vh;
     }
-        box.disable=true;
-        count++;
-        let isWinner=checkWinner();
-        if(count===9 && !isWinner){
-        gameDraw();
-    }
-    });
-});
-const gameDraw=()=>{
-    msg.innerText=`Game was a Draw your oponet has good knowledge`;
-    msgContainer.classList.remove("hide");
-    disableBoxes();
-    
-};
-const disableBoxes=()=>{
-    for (let box of boxes){
-        box.displed=true; 
-        
-    
-    }
-};
-const enableBoxes=()=>{
-    for(let box of boxes){
-        box.disable=false;
-        box.innerText="";
-    }
-    
-    
-};
-    const showWinner = (winner) => {
-  msg.innerText = `Congratulations, Winner is ${winner}`;
-  msgContainer.classList.remove("hide");
-  disableBoxes();
-};
-    
-const checkWinner=()=>{
-    for(let pattern of winPatterns){
-        let pos1Val=boxes[pattern[0]].innerText; 
-        let pos2Val=boxes[pattern[1]].innerText;
-        let pos3Val=boxes[pattern[2]].innerText;
-        
-        if(pos1Val!=""&&pos2Val!=""&&pos3Val!=""){
-            if(pos1Val===pos2Val&&pos2Val===pos3Val){
-                
-                showWinner(pos1Val);
-                return true;
-            }
-        }
-        
-    }
-}; 
-    newGameBtn.addEventListener("click", resetGame);//This is used for playing new game 
-resetBtn.addEventListener("click", resetGame);
-    resetBtn2.addEventListener("click", resetGame);
-    </script>   
-  </body>
-</html>
-<script>
+
+ .box{
+   background-color: white;
+   padding-top: 30px;
+   padding: 30px;
+display: flex;
+ }
+  .box h2{
+   margin-bottom: 40px;
+   text-align: center;
+   font-size: 26px;
+   color: #015a96;
+   font-family: sans-serif;
+ }
+  input {
+ padding: 20px;
+ user-select: none;
+ height: 50px;
+ width: 400px;
+ border-radius: 6px;
+ border: none;
+ border: 2px solid #8d0cf7;
+ outline: none;
+ font-size: 22px;
+ }
+
+input::placeholder{
+  font-size: 23px;
+ }
+  #button {
+  font-family: sans-serif;
+  font-size: 15px;
+  margin-top: 40px;
+  border: 2px solid #7100cf;
+  width: 155px;
+  height: 50px;
+  text-align: center;
+  background-color: #7100cf;
+  display: flex;
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;  
+}
+ table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+
+#button:hover {
+  color: white;
+  background-color: black;
+}
   
+  </style>
+  
+</head>
+<body>
+  <div class="box">
+
+
+  
+  <h2>Random Password Generater</h2>
+  <input type="text" name="" placeholder="Create password" id="password" readonly>
+  </div>
+    
+  <table>
+   <th><div id="button" class="btn1"onclick="passgenerator()">Generate</div></th>
+  </table>
+  
+</body>
+<script>
+
+let password=document.getElementById("password");
+ function passgenerator(){
+    let chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let  passwordLength = 10;
+    let password = "";
+ for (let i = 0; i <= passwordLength; i++) {
+   let randomNumber = Math.floor(Math.random() * chars.length);
+   let randnum=randomNumber +1;
+  
+  password += chars.substring(randomNumber,randnum); 
+      }
+        document.getElementById("password").value = password;
+ }
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
